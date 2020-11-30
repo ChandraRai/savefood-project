@@ -1,0 +1,20 @@
+{
+    "food": [
+        {
+            "foodId": 101,
+            "foodName": "apple",
+            "foodType": "fruit",
+            "amount": "6 lbs",
+            "expiry": "2020/11/12",
+            "status": "reserved"
+        },
+        {
+            "foodId": 102,
+            "foodName": "lettuce",
+            "foodType": "vegetable",
+            "amount": "1 bag",
+            "expiry": "2020/12/12",
+            "status": "available"
+        }
+    ]
+}
