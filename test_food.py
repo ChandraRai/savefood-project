@@ -19,13 +19,12 @@ food = dict()
 def test_upload_food():
     my_item = {"food": [{'foodName': 'apple',
                          'foodType': 'fruit',
-                         'amount': '6 lbs',
-                         'expiry': '2020/11/12'
+                         'amount': '6 lbs'
                          }]}
     food_info = FoodItem(food)
     food_info.upload_food(my_item)
     food_info_fields = 4
-
+    # assert fails as my_item is missing 1 food item detail ('expiry: 2020/11/12')
     assert food_info.__len__() == food_info_fields, "field values are missing"
 
 #
@@ -59,15 +58,15 @@ def test_reserve_food():
     db_file = open("project/data.json")
     obj = json.load(db_file)
     db_file = open("project/data.json", "w")
-
     food_to_reserve = "apple"
-    # find food to reserve and check if food is reserved
+
     for item in obj['food']:
         if item['foodName'] == food_to_reserve:
             item['status'] = 'reserved'
             json.dump(obj, db_file, indent=4)
 
-            assert item['status'] == "reserved"
+            # assert fails as it finds food is no more available
+            assert item['status'] == "available"
 
 #
 # System Features
