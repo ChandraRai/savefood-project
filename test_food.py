@@ -24,6 +24,7 @@ def test_upload_food():
     food_info = FoodItem(food)
     food_info.upload_food(my_item)
     food_info_fields = 4
+
     # assert fails as my_item is missing 1 food item detail ('expiry: 2020/11/12')
     assert food_info.__len__() == food_info_fields, "field values are missing"
 
@@ -41,13 +42,41 @@ def test_view_food():
 # Requirement No. 4.5 - Searching Food
 #
 def test_search_food_item():
-    search_item = 'apple'
     db = SaveFoodDB()
     db.connect('project/data.json')
-    data = db.get_data('apple')
+    search_item = db.get_data('guava')
 
-    # assert passes as search item is found in the food list
-    assert data['foodName'] == search_item, "value not matching"
+    # assert fails as search item is not found in the food list
+    assert search_item == True, "Food item not found!"
+
+#
+# System Features
+# Requirement No. 4.7 - Placing Food Request
+#
+def test_place_request():
+    request_list = dict()
+    item = {"fooType": "fruit",
+            "foodDetails": "apple"
+            }
+    expected_request_placed = True
+    request = RequestItem(request_list)
+    actual_request_placed = request.place_request(item)
+
+    # assert fails as 1 item info ("quantity" : "6 lbs") is missing
+    assert actual_request_placed is expected_request_placed, "food request can not be placed"
+
+#
+# System Features
+# Requirement No. 4.8 - Email Alert
+#
+def test_send_email_alert():
+    db = SaveFoodDB()
+    db.connect('project/data.json')
+    actual_send_email_status = db.send_email_alert('lettuce')
+    expected_send_email_status = True
+
+    # assert fails as food item 'status' is available
+    assert actual_send_email_status is expected_send_email_status, "food status: available, email not sent"
 
 #
 # System Features
@@ -66,34 +95,7 @@ def test_reserve_food():
             json.dump(obj, db_file, indent=4)
 
             # assert fails as it finds food is no more available
-            assert item['status'] == "available"
-
-#
-# System Features
-# Requirement No. 4.7 - Placing Food Request
-#
-def test_place_request():
-    request_list = dict()
-    item = {"fooType": "fruit",
-            "foodDetails": "apple",
-            "Quantity": "6 lbs"}
-    expected_request_placed = True
-    request = RequestItem(request_list)
-    actual_request_placed = request.place_request(item)
-
-    assert actual_request_placed == expected_request_placed, "food request can not be placed"
-
-#
-# System Features
-# Requirement No. 4.8 - Email Alert
-#
-def test_send_email_alert():
-    expected_send_email = True
-    db = SaveFoodDB()
-    db.connect('project/data.json')
-    actual_send_email = db.send_email_alert()
-
-    assert actual_send_email == expected_send_email, "email not sent as food status: available"
+            assert item['status'] == "available", "Ops! food is already reserved."
 
 #
 # System Features
@@ -102,7 +104,8 @@ def test_send_email_alert():
 def test_cancel_food():
     db = FoodItem(food)
 
-    assert db.cancel_food('apple') == True, "food item can not be cancelled"
+    # assert fails as searched food item ('Guava') to cancel is not in the list
+    assert db.cancel_food('Guava') == True, "food item can not be cancelled"
 
 
 

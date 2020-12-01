@@ -10,8 +10,8 @@
 class User:
 
     def __init__(self):
-        self.username = "Chandra123"
-        self.password = "Password123"
+        self.username = "chandra"
+        self.password = "Password"
         self.email = "chandra@example.com"
 
     # takes username and returns TRUE if username length is less than 30
@@ -36,7 +36,6 @@ class User:
     def verify_username(self):
         if self.is_username_length_valid() \
                 and self.has_username_empty_space() \
-                and self.is_username_length_valid() \
                 and self.is_username_type_str():
             return True
 
@@ -68,18 +67,20 @@ class User:
             return True
 
     # takes confirm_password and returns TRUE if they match
-    def match_password(self, confirm_password):
-        if self.password == confirm_password:
+    def match_password(self, user_password):
+        if self.password == user_password:
             return True
 
-    #
+    # takes old_password and new password and returns TRUE if
+    # old password match with set password as well as new password meets password requirements
     def update_password(self, old_password, new_password):
         if self.match_password(old_password) \
-                and self.verify_password():
+            and any(letter.isupper() for letter in new_password) \
+                and any(number.isdigit() for number in new_password):
             return True
 
-    # returns TRUE if account info (username, password, email) are valid
-    def create_account(self):
+    # returns TRUE if user info (username, password, email) are valid
+    def create_user_account(self):
         if self.verify_username() \
             and self.verify_password() \
                 and self.is_email_valid():
@@ -93,8 +94,12 @@ class User:
 
     # takes user_info and returns None as it is currently implemented in test suite
     @staticmethod
-    def update_account(user_info):
-        return None
-
+    def update_user_account(username, password, email):
+        if len(username) < 30 \
+                and ' ' not in username \
+                and any(letter.isupper() for letter in password) \
+                and any(number.isdigit() for number in password) \
+                and '@' and '.' in email:
+            return True
 
 

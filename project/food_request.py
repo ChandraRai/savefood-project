@@ -19,7 +19,7 @@ class RequestItem:
     # takes an item (that contains food_type, food_details, quantity)
     # then updates and returns TRUE if item contains all 3 details
     def place_request(self, item):
-        if len(item) == 3:
+        if len(item) == 4:
             self.request_list.update(item)
             return True
 

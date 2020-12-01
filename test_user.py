@@ -12,9 +12,11 @@ from project.user import User
 # System Features
 # Requirement No. 4.1 - Account Registration
 #
-def test_create_account():
+def test_create_user_account():
     user = User()
-    assert user.create_account() == True, "invalid credentials"
+
+    # assert fails as user info is invalid : Password does not meet requirements
+    assert user.create_user_account() == True, "invalid credentials"
 
 #
 # System Features
@@ -24,19 +26,41 @@ def test_authenticate_user():
     username = "Chandra123"
     password = "password"
     user = User()
+
     # assert fails as password does not match
     assert user.authenticate_user(username, password), "invalid username or password"
 
 #
 # System Features
-# Requirement No. 4.9 - Account Update
+# Requirement No. 4.9 - User Account Update
 #
-def test_account_update():
-    account_info = [
-        "Chandra",
-        "Chandra123",
-        "chandra@example.com"
-    ]
-    for info in account_info:
-        assert User.update_account(info) == True, "invalid account info"
+def test_user_account_update():
+    invalid_user_info = {
+        "username": "chandra",
+        "password": "Password123",
+        "email": "aaa@aaa"
+    }
 
+    # assert fails as user account info is invalid - not matching the requirement
+    assert User.update_user_account(invalid_user_info['username'], invalid_user_info['password'],
+                                    invalid_user_info['email']) == True, f"invalid user info {invalid_user_info}"
+
+#
+# System Features
+# Requirement No. 4.11 - Password Update
+#
+def test_password_update():
+    user = User()
+    old_password = "Password"
+    new_password = "Chandra"
+    update_password = user.update_password(old_password, new_password)
+
+    # assert fails as new password does not meet password requirement
+    assert update_password == True, "invalid password"
+
+#
+# System Features
+# Requirement No. 4.12 - User Account Deletion
+#
+def test_delete_user_account():
+    pass

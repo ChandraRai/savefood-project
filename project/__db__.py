@@ -17,16 +17,16 @@ class SaveFoodDB:
         with open(data_file) as json_file:
             self._data = json.load(json_file)
 
-    # takes food name and returns details of the food
+    # takes food name and returns TRUE if found
     def get_data(self, food_name):
         for item in self._data['food']:
             if item['foodName'] == food_name:
-                return item
+                return True
 
-    # returns TRUE if food item status is "Reserved"
-    def send_email_alert(self):
+    # returns TRUE as to set flag to email sent if food item status is "Reserved"
+    def send_email_alert(self, food_name):
         for item in self._data['food']:
-            if item['status'] == 'reserved':
+            if item['foodName'] == food_name and item['status'] == 'reserved':
                 return True
 
 
