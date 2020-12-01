@@ -1,11 +1,11 @@
 # Save Food Project (3RQ3)
 
 ##### Description
-<P>This project is a Python test suite to test some 
+This project is a Python test suite to test some 
 basic functional requirements of Save Food Application. 
 When creating test for user 'authentication', I have added data.json to mock Save Food database and 
 a separate `__db__.py` to handle it. If there is any issue running the test suite, please contact [here](raic1@mcmaster.ca).
-</P>
+
 
 >SAVE FOOD is a platform that helps connect people who want to donate food and those who 
 >want to consume food. Food donor can share, and food consumer can acquire reusable food which 
