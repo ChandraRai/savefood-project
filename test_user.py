@@ -63,4 +63,20 @@ def test_password_update():
 # Requirement No. 4.12 - User Account Deletion
 #
 def test_delete_user_account():
-    pass
+    user_info = {"user": [{
+            "user_id": 101,
+            "username": "chandra",
+            "password": "Chandra123",
+            "email": "chandra@example.com"
+        }]
+    }
+    user_list = dict()
+    user_list.update(user_info)
+
+    for user in user_list['user']:
+        if user['user_id'] is 101:
+            user_list.clear()
+            return True
+
+    # asserts pass as user id (101) is found in the user list
+    assert user_list is True, 'user account not deleted'

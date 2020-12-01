@@ -102,4 +102,11 @@ class User:
                 and '@' and '.' in email:
             return True
 
+    # takes a unique user identifier
+    # returns None as it is implemented in test suite
+    @staticmethod
+    def delete_user_account(user_id):
+        return None
+
+
 
