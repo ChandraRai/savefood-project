@@ -32,7 +32,7 @@ class User:
         if type(self.username) is str:
             return True
 
-    # verifies username with criteria
+    # verifies username with above username criteria
     def verify_username(self):
         if self.is_username_length_valid() \
                 and self.has_username_empty_space() \
@@ -71,8 +71,8 @@ class User:
         if self.password == user_password:
             return True
 
-    # takes old_password and new password and returns TRUE if
-    # old password match with set password as well as new password meets password requirements
+    # takes old password and new password as parameters and returns TRUE if
+    # old password matches with previously set password as well as new password meets password requirements
     def update_password(self, old_password, new_password):
         if self.match_password(old_password) \
             and any(letter.isupper() for letter in new_password) \
@@ -92,7 +92,8 @@ class User:
         if self.username == username and self.password == password:
             return True
 
-    # takes user_info and returns None as it is currently implemented in test suite
+    # takes user account info (username, password, email) and
+    # returns TRUE if user info is verified to be updated
     @staticmethod
     def update_user_account(username, password, email):
         if len(username) < 30 \
@@ -103,7 +104,7 @@ class User:
             return True
 
     # takes a unique user identifier
-    # returns None as it is implemented in test suite
+    # returns None as it is implemented in test_user module itself
     @staticmethod
     def delete_user_account(user_id):
         return None

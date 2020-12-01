@@ -3,7 +3,7 @@
 ##### Description
 This project is a Python test suite to test some 
 basic functional requirements of Save Food Application. 
-When creating test for user 'authentication', I have added data.json to mock Save Food database and 
+When creating test for user 'authentication', I have added `data.json` to mock Save Food database and 
 a separate `__db__.py` to handle it. If there is any issue running the test suite, please contact [here](mailto:raic1@mcmaster.ca).
 
 

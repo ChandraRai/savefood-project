@@ -16,10 +16,10 @@ class RequestItem:
     def __len__(self):
         return len(self.request_list)
 
-    # takes an item (that contains food_type, food_details, quantity)
-    # then updates and returns TRUE if item contains all 3 details
-    def place_request(self, item):
-        if len(item) == 4:
-            self.request_list.update(item)
+    # takes a food item (that contains food_type, food_details, quantity)
+    # then updates and returns TRUE if the food item contains all 3 food item details
+    def place_request(self, food_item):
+        if len(food_item) == 4:
+            self.request_list.update(food_item)
             return True
 

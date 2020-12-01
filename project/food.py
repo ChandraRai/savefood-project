@@ -17,10 +17,10 @@ class FoodItem:
         for item in self.food_list['food']:
             return len(item)
 
-    # takes item (contains food_name, food_type, amount, expiry)
-    # returns TRUE if item is added successfully in the list
-    def upload_food(self, item):
-        self.food_list.update(item)
+    # takes food item (that contains food_name, food_type, amount, expiry)
+    # returns TRUE if item is added successfully in the food list
+    def upload_food(self, food_item):
+        self.food_list.update(food_item)
 
     # displays items from the food_item list
     # returns None as it is currently implemented in test_food suite
@@ -28,7 +28,7 @@ class FoodItem:
     def view_food():
         return None
 
-    # takes food name and returns TRUE if food item is removed from the list after it is found
+    # takes food name and returns TRUE if food item is removed from the food list after it is found
     def cancel_food(self, food_name):
         for item in self.food_list['food']:
             if len(self.food_list) != 0 and \

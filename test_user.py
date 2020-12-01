@@ -10,7 +10,7 @@ from project.user import User
 
 #
 # System Features
-# Requirement No. 4.1 - Account Registration
+# Requirement No. 4.1 - User Account Registration
 #
 def test_create_user_account():
     user = User()
@@ -20,7 +20,7 @@ def test_create_user_account():
 
 #
 # System Features
-# Requirement No. 4.2 - Account Authentication
+# Requirement No. 4.2 - User Account Authentication
 #
 def test_authenticate_user():
     username = "Chandra123"
@@ -55,7 +55,7 @@ def test_password_update():
     new_password = "Chandra"
     update_password = user.update_password(old_password, new_password)
 
-    # assert fails as new password does not meet password requirement
+    # assert fails as new password does not meet password requirements
     assert update_password == True, "invalid password"
 
 #
@@ -78,5 +78,6 @@ def test_delete_user_account():
             user_list.clear()
             return True
 
-    # asserts pass as user id (101) is found in the user list
+    # this one is a pass test case
+    # asserts passes as user id (101) is found in the user list
     assert user_list is True, 'user account not deleted'

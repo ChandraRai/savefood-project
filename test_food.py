@@ -25,7 +25,7 @@ def test_upload_food():
     food_info.upload_food(my_item)
     food_info_fields = 4
 
-    # assert fails as my_item is missing 1 food item detail ('expiry: 2020/11/12')
+    # assert fails as food item ('my_item') is missing 1 food item detail ('expiry: 2020/11/12')
     assert food_info.__len__() == food_info_fields, "field values are missing"
 
 #
@@ -34,7 +34,7 @@ def test_upload_food():
 #
 def test_view_food():
 
-    # assert fails as there is 1 item in the food list
+    # assert fails as there is 1 food item in the food list
     assert food.__len__() == 0, f"there is {food.__len__()} item in the list"
 
 #
@@ -46,7 +46,7 @@ def test_search_food_item():
     db.connect('project/data.json')
     search_item = db.get_data('guava')
 
-    # assert fails as search item is not found in the food list
+    # assert fails as search food item is not found in the food list
     assert search_item == True, "Food item not found!"
 
 #
@@ -62,7 +62,7 @@ def test_place_request():
     request = RequestItem(request_list)
     actual_request_placed = request.place_request(item)
 
-    # assert fails as 1 item info ("quantity" : "6 lbs") is missing
+    # assert fails as 1 food item info ("quantity" : "6 lbs") is missing
     assert actual_request_placed is expected_request_placed, "food request can not be placed"
 
 #
@@ -94,7 +94,7 @@ def test_reserve_food():
             item['status'] = 'reserved'
             json.dump(obj, db_file, indent=4)
 
-            # assert fails as it finds food is no more available
+            # assert fails as it finds food item is no more available
             assert item['status'] == "available", "Ops! food is already reserved."
 
 #
@@ -104,7 +104,7 @@ def test_reserve_food():
 def test_cancel_food():
     db = FoodItem(food)
 
-    # assert fails as searched food item ('Guava') to cancel is not in the list
+    # assert fails as to cancel searched food item ('Guava')  is not in the food list
     assert db.cancel_food('Guava') == True, "food item can not be cancelled"
 
 
