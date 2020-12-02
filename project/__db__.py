@@ -7,12 +7,14 @@
       Filename: _db_.py
 """
 import json
+import smtplib
+
 
 class SaveFoodDB:
     def __init__(self):
         self._data = None
 
-    # connect to mock DB (data.json)
+    # connect to Save Food DB (data.json)
     def connect(self, data_file):
         with open(data_file) as json_file:
             self._data = json.load(json_file)
@@ -23,7 +25,7 @@ class SaveFoodDB:
             if item['foodName'] == food_name:
                 return True
 
-    # takes food name and returns food status if found
+    # takes food name and returns its status if found
     def get_food_status(self, food_name):
         for item in self._data['food']:
             if item['foodName'] == food_name:
@@ -34,8 +36,16 @@ class SaveFoodDB:
         for item in self._data['food']:
             if item['foodName'] == food_name \
                     and item['status'] == 'reserved':
-                # email sent
-                # send_email_flag_status = True
+                # send email
+                msg = "Hello, your food item is reserved"
+                msg['Subject'] = 'The food item is reserved!'
+                msg['From'] = "admin@example.com"
+                msg['To'] = "chandra@example.com"
+
+                s = smtplib.SMTP('localhost')
+                s.sendmail(msg)
+                s.quit()
+                # returns True after email sent
                 return True
 
 
