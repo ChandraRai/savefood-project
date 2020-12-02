@@ -33,20 +33,28 @@ class SaveFoodDB:
 
     # returns TRUE if food item status is "Reserved" as to indicate email sent
     def send_email_alert(self, food_name):
+        sender = "admin@example.com"
+        receiver = "chandra@example.com"
+
         for item in self._data['food']:
             if item['foodName'] == food_name \
                     and item['status'] == 'reserved':
-                # send email
-                msg = "Hello, your food item is reserved"
-                msg['Subject'] = 'The food item is reserved!'
-                msg['From'] = "admin@example.com"
-                msg['To'] = "chandra@example.com"
+                self.send_email(sender, receiver)
 
-                s = smtplib.SMTP('localhost')
-                s.sendmail(msg)
-                s.quit()
                 # returns True after email sent
                 return True
+
+    # helper method for send email alert
+    @staticmethod
+    def send_email(_from, _to):
+        msg = "Hello, your food item is reserved"
+        msg['Subject'] = 'The food item is reserved!'
+        msg['From'] = _from
+        msg['To'] = _to
+
+        s = smtplib.SMTP('localhost')
+        s.sendmail(msg)
+        s.quit()
 
 
 
