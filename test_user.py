@@ -74,10 +74,10 @@ def test_delete_user_account():
     user_list.update(user_info)
 
     for user in user_list['user']:
-        if user['user_id'] is 101:
+        if user['user_id'] is 102:
             user_list.clear()
             return True
 
     # this is a pass test case
-    # asserts passes as user id (101) is found in the user list
-    assert user_list is True, 'user account not deleted'
+    # assert fails as user id (102) is not found in the user list
+    assert user_list is True, "user account could not be deleted, specified user id not found"
