@@ -46,7 +46,7 @@ def test_search_food_item():
     db.connect('project/data.json')
     search_item = db.get_data('guava')
 
-    # assert fails as search food item is not found in the food list
+    # assert fails as searched food item is not found in the food list
     assert search_item == True, "Food item not found!"
 
 #
@@ -75,7 +75,7 @@ def test_send_email_alert():
     actual_send_email_status = db.send_email_alert('lettuce')
     expected_send_email_status = True
 
-    # assert fails as food item 'status' is available
+    # assert fails as food item 'status' is available (send email is triggered after food item is successfully reserved)
     assert actual_send_email_status is expected_send_email_status, "food status: available, email not sent"
 
 #

@@ -78,6 +78,6 @@ def test_delete_user_account():
             user_list.clear()
             return True
 
-    # this one is a pass test case
+    # this is a pass test case
     # asserts passes as user id (101) is found in the user list
     assert user_list is True, 'user account not deleted'

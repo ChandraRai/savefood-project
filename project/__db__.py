@@ -23,13 +23,14 @@ class SaveFoodDB:
             if item['foodName'] == food_name:
                 return True
 
-    # returns TRUE as to set flag to email sent if food item status is "Reserved"
+    # returns TRUE if food item status is "Reserved" as to indicate email sent
     def send_email_alert(self, food_name):
         for item in self._data['food']:
-            if item['foodName'] == food_name and item['status'] == 'reserved':
+            if item['foodName'] == food_name \
+                    and item['status'] == 'reserved':
+                # email sent
+                # send_email_flag_status = True
                 return True
-
-
 
 
 
