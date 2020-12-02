@@ -35,7 +35,7 @@ def test_upload_food():
 def test_view_food():
 
     # assert fails as there is 1 food item in the food list
-    assert food.__len__() == 0, f"there is {food.__len__()} item in the list"
+    assert food.__len__() == 0, f"there is {food.__len__()} item in the food item list"
 
 #
 # System Features
@@ -47,7 +47,7 @@ def test_search_food_item():
     search_item = db.get_data('guava')
 
     # assert fails as searched food item is not found in the food list
-    assert search_item == True, "Food item not found!"
+    assert search_item == True, "food item not found!"
 
 #
 # System Features
@@ -75,8 +75,9 @@ def test_send_email_alert():
     actual_send_email_status = db.send_email_alert('lettuce')
     expected_send_email_status = True
 
-    # assert fails as food item 'status' is available (send email is triggered after food item is successfully reserved)
-    assert actual_send_email_status is expected_send_email_status, "food status: available, email not sent"
+    # assert fails as food item 'status' is available (send email is triggered for food item successfully reserved)
+    assert actual_send_email_status is \
+           expected_send_email_status, f"email not sent, food status: {db.get_food_status('lettuce')}, "
 
 #
 # System Features

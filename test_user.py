@@ -42,8 +42,8 @@ def test_user_account_update():
     }
 
     # assert fails as user account info is invalid - not matching the requirement
-    assert User.update_user_account(invalid_user_info['username'], invalid_user_info['password'],
-                                    invalid_user_info['email']) == True, f"invalid user info {invalid_user_info}"
+    assert User.user_account_update(invalid_user_info['username'], invalid_user_info['password'],
+                                    invalid_user_info['email']) == True, f"invalid user info - {invalid_user_info}"
 
 #
 # System Features

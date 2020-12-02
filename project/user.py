@@ -95,7 +95,7 @@ class User:
     # takes user account info (username, password, email) and
     # returns TRUE if user info is verified to be updated
     @staticmethod
-    def update_user_account(username, password, email):
+    def user_account_update(username, password, email):
         if len(username) < 30 \
                 and ' ' not in username \
                 and any(letter.isupper() for letter in password) \
