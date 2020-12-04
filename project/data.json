@@ -15,6 +15,14 @@
             "amount": "1 bag",
             "expiry": "2020/12/12",
             "status": "available"
+        },
+        {
+            "foodId": 103,
+            "foodName": "orange",
+            "foodType": "fruit",
+            "amount": "2.5 lbs",
+            "expiry": "2020/12/02",
+            "status": "reserved"
         }
     ]
 }

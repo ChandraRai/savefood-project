@@ -10,9 +10,9 @@
 class User:
 
     def __init__(self):
-        self.username = "chandra"
-        self.password = "Password"
-        self.email = "chandra@example.com"
+        self.username = "this_is_invalid_username_length_provided"
+        self.password = "password"
+        self.email = "chandra@example"
 
     # takes username and returns TRUE if username length is less than 30
     def is_username_length_valid(self):
