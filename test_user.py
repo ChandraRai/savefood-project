@@ -34,13 +34,13 @@ def test_is_email_valid():
 def test_password_contains_lowercase():
     user = User()
 
-    # assert passes as it contains uppercase
+    # assert passes as it contains lowercase
     assert user.password_contains_lowercase() is True, "password does not contain lowercase"
 
 def test_password_contains_number():
     user = User()
 
-    # assert passes as it does not contain number
+    # assert fails as it does not contain number
     assert user.password_contains_number() is True, "password does not contain numeric value(s)"
 
 def test_create_user_account():
@@ -72,9 +72,9 @@ def test_user_account_update_with_invalid_credentials():
         "email": "aaa@aaa"
     }
 
-    # assert fails as user account info is invalid - not matching the requirement
+    # assert fails as user account info is invalid - email not valid
     assert User.user_account_update(invalid_user_info['username'], invalid_user_info['password'],
-                                    invalid_user_info['email']) == True, f"invalid user info - {invalid_user_info}"
+                                    invalid_user_info['email']) is True, f"invalid user info - {invalid_user_info}"
 
 def test_user_account_update_with_valid_credentials():
     invalid_user_info = {
@@ -83,7 +83,7 @@ def test_user_account_update_with_valid_credentials():
         "email": "chandra@example.com"
     }
 
-    # assert passes as user account info is valid
+    # assert passes as user account info is valid - meet all username, password, and email requirements
     assert User.user_account_update(invalid_user_info['username'], invalid_user_info['password'],
                                     invalid_user_info['email']) is True, f"invalid user info - {invalid_user_info}"
 
@@ -106,7 +106,8 @@ def test_pass_password_update():
     new_password = "Chandra123"
     update_password = user.update_password(old_password, new_password)
 
-    # assert passes as old password matches and new password meet password requirements
+    # assert passes as old password matches with the system password
+    # and new password meets password requirements
     assert update_password is True, "invalid password"
 
 #
@@ -129,7 +130,6 @@ def test_fail_delete_user_account():
             user_list.clear()
             return True
 
-    # this is a fail test case
     # assert fails as user id (102) is not found in the user list
     assert user_list is True, "user account could not be deleted, specified user id not found"
 
@@ -149,6 +149,5 @@ def test_pass_delete_user_account():
             user_list.clear()
             return True
 
-    # this is a pass test case
     # assert passes as user id (101) is found in the user list
     assert user_list is True, "user account could not be deleted, specified user id not found"

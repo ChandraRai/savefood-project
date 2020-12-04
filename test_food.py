@@ -13,9 +13,19 @@ from project.food_request import RequestItem
 
 #
 # System Features
-# Requirement No. 4.3 - Uploading Food
+# Requirement No. 4.4 - Viewing Food
 #
 food = dict()
+def test_view_food():
+    expected_food_item_number = 1
+
+    # assert fails as there is no food item in the food list
+    assert food.__len__() is expected_food_item_number, f"there is {food.__len__()} item in the food item list"
+
+#
+# System Features
+# Requirement No. 4.3 - Uploading Food
+#
 def test_fail_upload_food():
     my_item = {"food": [{'foodName': 'apple',
                          'foodType': 'fruit',
@@ -25,7 +35,7 @@ def test_fail_upload_food():
     food_info.upload_food(my_item)
     food_info_fields = 4
 
-    # assert fails as food item ('my_item') is missing 1 food item detail ('expiry: 2020/11/12')
+    # assert fails as food item to be uploaded is missing 1 food item detail ('expiry: 2020/11/12')
     assert food_info.__len__() == food_info_fields, "field values are missing"
 
 def test_pass_upload_food():
@@ -38,17 +48,8 @@ def test_pass_upload_food():
     food_info.upload_food(my_item)
     food_info_fields = 4
 
-    # assert passes as food item has all the details
+    # assert passes as food item has all necessary details
     assert food_info.__len__() == food_info_fields, "field values are missing"
-
-#
-# System Features
-# Requirement No. 4.4 - Viewing Food
-#
-def test_view_food():
-
-    # assert fails as there is 1 food item in the food list
-    assert food.__len__() == 0, f"there is {food.__len__()} item in the food item list"
 
 #
 # System Features
@@ -59,16 +60,16 @@ def test_fail_search_food_item():
     db.connect('project/data.json')
     search_item = db.get_data('guava')
 
-    # assert fails as searched food item is not found in the food list
-    assert search_item == True, "food item not found!"
+    # assert fails as searched food item is not found in the food item list
+    assert search_item is True, "food item not found!"
 
 def test_pass_search_food_item():
     db = SaveFoodDB()
     db.connect('project/data.json')
     search_item = db.get_data('apple')
 
-    # assert passes as searched food item is in the food list
-    assert search_item == True, "food item not found!"
+    # assert passes as searched food item is in the food item list
+    assert search_item is True, "food item not found!"
 
 #
 # System Features
@@ -109,35 +110,35 @@ def test_pass_reserve_food():
 #
 def test_place_request_with_incomplete_food_item_details():
     request_list = dict()
-    item = {"fooType": "fruit",
+    food_item = {"fooType": "fruit",
             "foodDetails": "apple"
             }
     expected_request_placed = True
     request = RequestItem(request_list)
-    actual_request_placed = request.place_request(item)
+    actual_request_placed = request.place_request(food_item)
 
     # assert fails as 1 food item detail ("quantity" : "6 lbs") is missing
     assert actual_request_placed is expected_request_placed, "food request can not be placed"
 
 def test_place_request_with_empty_food_item():
     request_list = dict()
-    item = {}
+    food_item = {}
     expected_request_placed = True
     request = RequestItem(request_list)
-    actual_request_placed = request.place_request(item)
+    actual_request_placed = request.place_request(food_item)
 
-    # assert fails as it is missing food item details
+    # assert fails as it is missing food item details - fields empty
     assert actual_request_placed is expected_request_placed, "please, provide food item details"
 
 def test_pass_place_request():
     request_list = dict()
-    item = {"fooType": "fruit",
-            "foodDetails": "apple",
-            "quantity": "6 lbs"
-            }
+    food_item = {"fooType": "fruit",
+                 "foodDetails": "apple",
+                 "quantity": "6 lbs"
+                }
     expected_request_placed = True
     request = RequestItem(request_list)
-    actual_request_placed = request.place_request(item)
+    actual_request_placed = request.place_request(food_item)
 
     # assert passes as food item contains all required food item details
     assert actual_request_placed is expected_request_placed, "food request can not be placed"
@@ -164,13 +165,13 @@ def test_fail_send_email_alert():
 def test_fail_cancel_food():
     db = FoodItem(food)
 
-    # assert fails as to cancel searched food item ('Guava')  is not in the food list
+    # assert fails as to cancel searched food item ('Guava')  is not in the food item list
     assert db.cancel_food('Guava') is True, "food item can not be cancelled"
 
 def test_pass_cancel_food():
     db = FoodItem(food)
 
-    # assert passes as to cancel searched food item ('Guava')  is in the food list
+    # assert passes as to cancel searched food item ('Guava')  is in the food item list
     assert db.cancel_food('apple') is True, "food item can not be cancelled"
 
 
